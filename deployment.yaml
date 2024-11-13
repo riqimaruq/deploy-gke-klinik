@@ -9,7 +9,31 @@ spec:
     matchLabels: 
       app: klinik
   template:
+    metadata:apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: klinik
+  namespace: klinik
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: klinik
+  template:
     metadata:
+      labels:
+        app: klinik
+    spec:
+      containers:
+      - name: klinik
+        image: riqimaruq/belajariac:24
+        resources:
+          limits:
+            memory: 100Mi
+        ports:
+        - name: web
+          containerPort: 80
+      automountServiceAccountToken: false
       labels:
         app: klinik
     spec:
