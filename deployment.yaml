@@ -1,49 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: klinik
-  namespace: klinik
+  name: akulaku
+  namespace: aplikasi
 spec:
-  replicas: 1
+  replicas: 1  # Sesuaikan jumlah replika sesuai kebutuhan
   selector:
-    matchLabels: 
-      app: klinik
-  template:
-    metadata:apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: klinik
-  namespace: klinik
-spec:
-  replicas: 1
-  selector:
-    matchLabels: 
-      app: klinik
+    matchLabels:
+      app: akulaku
   template:
     metadata:
       labels:
-        app: klinik
+        app: akulaku
     spec:
       containers:
-      - name: klinik
-        image: riqimaruq/belajariac:23
-        resources:
-          limits:
-            memory: 100Mi
+      - name: akulaku
+        image: riqimaruq/akulaku:latest
         ports:
-        - name: web
-          containerPort: 80
-      automountServiceAccountToken: false
-      labels:
-        app: klinik
-    spec:
-      containers:
-      - name: klinik
-        image: riqimaruq/belajariac:$BUILD_NUMBER
+        - containerPort: 80  # Sesuaikan port jika berbeda
         resources:
+          requests:
+            memory: "10Mi"
+            cpu: "250m"
           limits:
-            memory: 100Mi
-        ports:
-        - name: web
-          containerPort: 80
-      automountServiceAccountToken: false
+            memory: "100Mi"
+            cpu: "500m"
